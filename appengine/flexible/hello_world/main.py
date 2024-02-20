@@ -24,7 +24,7 @@ async def webhook():
 
     return jsonify({"message": bot_reply})
 
-@app.route("/home", methods=["GET"])
+@app.route("/home", methods=["POST"])
 def home():
     return render_template('chatui.html')
 
