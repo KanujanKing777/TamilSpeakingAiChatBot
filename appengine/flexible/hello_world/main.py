@@ -3,13 +3,12 @@ from flask_cors import CORS
 
 app = Flask(__name__, static_folder= "templates")
 CORS(app)
-# Load Rasa model
 
 @app.route("/signin")
 def signin():
     pass
 
-@app.route("/webhook", methods=["POST"])
+@app.route("/webhook", methods=["GET","POST"])
 async def webhook():
     data = request.get_json()
     user_message = data["message"]
@@ -24,7 +23,7 @@ async def webhook():
 
     return jsonify({"message": bot_reply})
 
-@app.route("/home", methods=["POST"])
+@app.route("/home", methods=["GET","POST"])
 def home():
     return render_template('chatui.html')
 
