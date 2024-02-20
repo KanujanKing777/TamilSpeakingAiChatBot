@@ -15,7 +15,6 @@ def webhook():
             user_message = data["message"]
 
             # Debugging: Print received data
-            print(f"Received data: {data}")
             hi_list = ['hi', 'hello', 'vanakkam', 'good morning', 'good evening', 'good afternoon']
             hi_list_gf = ['hi', 'hello', 'vanakkam']
             caller_list = ['da', 'dear', 'darling']
@@ -23,7 +22,9 @@ def webhook():
             how_list_gf = ['I am fine bcz of u', 'I am in luv with u', 'I will kiss you']
             bye_list = ['bye di', 'Its time to say bye', 'bye']
             bye_list_gf = ['bye da', 'bye da my luv']
-
+            casual = ['love u darling', 'luv u forever', 'u r my favourite',
+                      'I luv u for infinity']
+            
             if any(word in user_message for word in hi_list):
                 bot_reply = random.choice(hi_list_gf) + " " + random.choice(caller_list)
             elif any(word in user_message for word in how_list):
@@ -31,7 +32,7 @@ def webhook():
             elif any(word in user_message for word in bye_list):
                  bot_reply = random.choice(bye_list_gf) 
             else:
-                bot_reply = "love u darling"
+                bot_reply = random.choice(casual)
 
             # Debugging: Print bot's reply
             print(f"Bot's reply: {bot_reply}")
