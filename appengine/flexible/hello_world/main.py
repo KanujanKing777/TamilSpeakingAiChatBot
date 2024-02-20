@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify, render_template
-from rasa.core.agent import Agent
 from flask_cors import CORS
 
 app = Flask(__name__, static_folder= "templates")
@@ -18,6 +17,8 @@ async def webhook():
     # Get Rasa response
     if 'hi' in user_message:
         bot_reply = "Hi Dear"
+    else:
+        bot_reply = "love u darling"
 
     # Extract the bot's reply
 
