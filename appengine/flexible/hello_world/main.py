@@ -19,9 +19,17 @@ def webhook():
             hi_list = ['hi', 'hello', 'vanakkam', 'good morning', 'good evening', 'good afternoon']
             hi_list_gf = ['hi', 'hello', 'vanakkam']
             caller_list = ['da', 'dear', 'darling']
-            # Get Rasa response
+            how_list = ['how are you', 'epdi irukureenga', 'vaazhkai epdi pothu']
+            how_list_gf = ['I am fine bcz of u', 'I am in luv with u', 'I will kiss you']
+            bye_list = ['bye di', 'Its time to say bye', 'bye']
+            bye_list_gf = ['bye da', 'bye da my luv']
+
             if any(word in user_message for word in hi_list):
                 bot_reply = random.choice(hi_list_gf) + " " + random.choice(caller_list)
+            elif any(word in user_message for word in how_list):
+                 bot_reply = random.choice(how_list_gf) 
+            elif any(word in user_message for word in bye_list):
+                 bot_reply = random.choice(bye_list_gf) 
             else:
                 bot_reply = "love u darling"
 
