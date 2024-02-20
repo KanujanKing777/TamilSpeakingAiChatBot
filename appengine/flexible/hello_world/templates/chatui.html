@@ -42,7 +42,6 @@
             const data = {
                 message: userMessage
             };
-            console.log("its done");
             // Send user message to the server
             fetch(url, {
                 method: 'POST',
@@ -54,14 +53,12 @@
             .then(response => response.json())
             .then(data => {
                 // Bot response
-                
                 var datum = data.message;
-                for(let i=0; i<datum.length; i++){
-                    var botBubble = document.createElement('div');
-                    botBubble.className = 'message bot-message';
-                    botBubble.textContent = datum[i].text;
-                    chatMessages.appendChild(botBubble);
-                }
+                var botBubble = document.createElement('div');
+                botBubble.className = 'message bot-message';
+                botBubble.textContent = data.message;
+                chatMessages.appendChild(botBubble);
+                
                 document.getElementById('user-message').value = ''; // Clear the input field
                 chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll to the latest message
             });

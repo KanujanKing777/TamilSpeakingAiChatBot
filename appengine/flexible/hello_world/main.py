@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
-
+import random
 app = Flask(__name__, static_folder= "templates")
 CORS(app)
 
@@ -9,19 +9,33 @@ def signin():
     pass
 
 @app.route("/webhook", methods=["GET","POST"])
-async def webhook():
-    data = request.get_json()
-    user_message = data["message"]
+def webhook():
+    try:
+            data = request.get_json()
+            user_message = data["message"]
 
-    # Get Rasa response
-    if 'hi' in user_message:
-        bot_reply = "Hi Dear"
-    else:
-        bot_reply = "love u darling"
+            # Debugging: Print received data
+            print(f"Received data: {data}")
+            hi_list = ['hi', 'hello', 'vanakkam', 'good morning', 'good evening', 'good afternoon']
+            hi_list_gf = ['hi', 'hello', 'vanakkam']
+            caller_list = ['da', 'dear', 'darling']
+            # Get Rasa response
+            if any(word in user_message for word in hi_list):
+                bot_reply = random.choice(hi_list_gf) + " " + random.choice(caller_list)
+            else:
+                bot_reply = "love u darling"
 
-    # Extract the bot's reply
+            # Debugging: Print bot's reply
+            print(f"Bot's reply: {bot_reply}")
 
-    return jsonify({"message": bot_reply})
+            # Extract the bot's reply
+            return jsonify({"message": bot_reply})
+        
+        # Handle GET requests if needed
+    
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+        return jsonify({"error": "Internal Server Error"})
 
 @app.route("/home", methods=["GET","POST"])
 def home():
