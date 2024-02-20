@@ -5,7 +5,6 @@ from flask_cors import CORS
 app = Flask(__name__, static_folder= "templates")
 CORS(app)
 # Load Rasa model
-agent = Agent.load("./models")
 
 @app.route("/signin")
 def signin():
@@ -17,7 +16,8 @@ async def webhook():
     user_message = data["message"]
 
     # Get Rasa response
-    bot_reply = await agent.handle_text(user_message)
+    if 'hi' in user_message:
+        bot_reply = "Hi Dear"
 
     # Extract the bot's reply
 
