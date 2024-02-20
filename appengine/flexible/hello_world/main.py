@@ -50,7 +50,7 @@ def home():
     return render_template('chatui.html')
 
 @app.route("/", methods=["GET","POST"])
-def home():
+def fun():
     return render_template('chatui.html')
 
 if __name__ == "__main__":
