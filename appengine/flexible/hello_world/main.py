@@ -1,36 +1,31 @@
-# Copyright 2015 Google LLC
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+from flask import Flask, request, jsonify, render_template
+from rasa.core.agent import Agent
+from flask_cors import CORS
 
-# [START gae_flex_quickstart]
-from flask import Flask
+app = Flask(__name__, static_folder= "templates")
+CORS(app)
+# Load Rasa model
+agent = Agent.load("./models")
 
+@app.route("/signin")
+def signin():
+    pass
 
-app = Flask(__name__)
+@app.route("/webhook", methods=["POST"])
+async def webhook():
+    data = request.get_json()
+    user_message = data["message"]
 
+    # Get Rasa response
+    bot_reply = await agent.handle_text(user_message)
 
-@app.route("/")
-def hello() -> str:
-    """Return a friendly HTTP greeting.
+    # Extract the bot's reply
 
-    Returns:
-        A string with the words 'Hello World!'.
-    """
-    return "Hello World!"
+    return jsonify({"message": bot_reply})
 
+@app.route("/home", methods=["GET"])
+def home():
+    return render_template('chatui.html')
 
 if __name__ == "__main__":
-    # This is used when running locally only. When deploying to Google App
-    # Engine, a webserver process such as Gunicorn will serve the app.
-    app.run(host="127.0.0.1", port=8080, debug=True)
-# [END gae_flex_quickstart]
+    app.run(debug=True)
