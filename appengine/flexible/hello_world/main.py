@@ -13,14 +13,14 @@ def webhook():
     try:
             data = request.get_json()
             user_message = data["message"]
-
+            user_message = user_message + ' '
             # Debugging: Print received data
-            hi_list = ['hi', 'hello', 'vanakkam', 'good morning', 'good evening', 'good afternoon']
+            hi_list = ['hi ', 'hello ', 'vanakkam ', 'good morning ', 'good evening ', 'good afternoon ']
             hi_list_gf = ['hi', 'hello', 'vanakkam']
             caller_list = ['da', 'dear', 'darling']
-            how_list = ['how are you', 'epdi irukureenga', 'vaazhkai epdi pothu']
+            how_list = ['how are you ', 'epdi irukureenga ', 'vaazhkai epdi pothu ']
             how_list_gf = ['I am fine bcz of u', 'I am in luv with u', 'I will kiss you']
-            bye_list = ['bye di', 'Its time to say bye', 'bye']
+            bye_list = ['bye di ', 'Its time to say bye ', 'bye']
             bye_list_gf = ['bye da', 'bye da my luv']
             casual = ['love u darling', 'luv u forever', 'u r my favourite',
                       'I luv u for infinity']
