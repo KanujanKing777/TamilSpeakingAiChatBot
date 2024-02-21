@@ -43,6 +43,9 @@
             chatMessages.appendChild(userBubble);
 
             const url = 'https://tamil-speaking-ai-girl-friend.de.r.appspot.com/webhook';
+            userMessage = userMessage + ' ';
+            userMessage = userMessage.toLowerCase();
+
             const data = {
                 message: userMessage
             };
