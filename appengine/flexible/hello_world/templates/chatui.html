@@ -43,6 +43,7 @@
             chatMessages.appendChild(userBubble);
 
             const url = 'https://tamil-speaking-ai-girl-friend.de.r.appspot.com/webhook';
+            const url2 = 'http://127.0.0.1:8080/webhook';
             userMessage = userMessage + ' ';
             userMessage = userMessage.toLowerCase();
 
@@ -50,7 +51,7 @@
                 message: userMessage
             };
             // Send user message to the server
-            fetch(url, {
+            fetch(url2, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

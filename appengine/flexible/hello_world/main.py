@@ -29,6 +29,7 @@ def webhook():
 
             nuts = ['oh ', 'ohh ', 'mm ', 'mmm ', 'ah ', 'ahh ']
             
+
             if any(word in user_message for word in hi_list):
                 bot_reply = random.choice(hi_list_gf) + " " + random.choice(caller_list)
             elif any(word in user_message for word in how_list):
