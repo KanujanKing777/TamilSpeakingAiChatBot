@@ -10,13 +10,20 @@ body {
 }
 
 #chat-container {
-    width: 500px;
+    width: 45vw;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 10 10 10px rgba(255, 255, 255, 0.9);
-    height: 95vh;
+    height: 99vh;
     background-color: #212121;
 }
+@media only screen and (max-width:800px){
+    #chat-container{
+        border-radius: 0;
+        width:100vw;
+    }
+}
+
 ::-webkit-scrollbar {
     width: 12px;
 }
